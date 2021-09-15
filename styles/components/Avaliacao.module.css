@@ -1,0 +1,81 @@
+.AvaliacaoHide{
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    width: 80%;
+    border-radius: 10px;
+    padding:10px;
+}
+
+.AvaliacaoNaoHide{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    width: 80%;
+    border-radius: 10px;
+    padding:10px;
+}
+
+.AvaliacaoNaoHideNav{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.AvaliacaoNaoHideForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+}
+
+.Input{
+    border: none;
+    opacity: 0.6;
+    border-radius: 10px;
+    font-size:20px;
+}
+
+
+.Img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:48px;
+}
+
+.Painel{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-top: 5%;
+    width: 80%;
+    border-radius: 10px;
+    padding:10px;
+    text-align: center;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.Painel2{
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding:10px;
+    text-align: center;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+
+.Botao{
+    border: none;
+    width: 20%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}

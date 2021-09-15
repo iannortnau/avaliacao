@@ -12,6 +12,7 @@
     "@prisma/client": "^3.0.2",
     "next": "11.1.2",
     "react": "17.0.2",
+    "react-data-table-component": "^7.1.0",
     "react-dom": "17.0.2"
   },
   "devDependencies": {

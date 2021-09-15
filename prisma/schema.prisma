@@ -12,7 +12,7 @@ model Avaliacao {
   nome      String      @db.VarChar(200)
   descricao String      @db.VarChar(500)
   criador   String      @db.VarChar(500)
-  data      DateTime    @db.Date
+  link      String      @db.VarChar(1000)
   Modulo    Modulo[]
   Relatorio Relatorio[]
 }
@@ -59,6 +59,7 @@ model Relatorio {
   usuario_nome  String    @db.VarChar(200)
   usuario_email String    @db.VarChar(500)
   usuario_pdf   String    @db.VarChar(500)
+  data          DateTime  @db.Date
   Avaliacao     Avaliacao @relation(fields: [avaliacao], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Relatorio_fk0")
   Media         Media[]
 
