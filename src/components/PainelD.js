@@ -40,7 +40,7 @@ export default function PainelD() {
         <div className={"corPrimariaText corPrimariaTr "+styles.Painel}>
             <h1>Painel de controle</h1>
             <button className={"w3-ripple corPrimaria "+styles.Botao} onClick={vaiParaCriador}>Criar Avaliação</button>
-            <div className={"corPrimaria w3-text-white "+styles.Painel2}>
+            <div className={"corPrimariaText corPrimariaTrTr "+styles.Painel2}>
                 <h1>Avaliações</h1>
                 <DataTable
                     columns={columns}

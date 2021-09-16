@@ -30,7 +30,7 @@ async function handler(req, res) {
 
     async function attAvaliacao(){
         try {
-            const result = await prisma.user.update({
+            const result = await prisma.avaliacao.update({
                 where: {
                     id: id,
                 },

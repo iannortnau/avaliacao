@@ -1,10 +1,10 @@
 .Painel{
-    margin-top: 10%;
+    margin-top: 100px;
     width: 80%;
+    max-width: 1000px;
     border-radius: 10px;
     padding:10px;
     text-align: center;
-    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 .Painel2{
@@ -13,7 +13,6 @@
     margin-right: auto;
     padding:10px;
     text-align: center;
-    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
 
