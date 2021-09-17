@@ -1,28 +1,47 @@
-.Painel{
+.ModuloHide{
+    user-select: none;
     display: flex;
     justify-content: space-between;
+    margin-top: 5px;
+    border-radius: 10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.ModuloNaoHide{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     align-content: center;
-    margin-top: 5%;
-    width: 80%;
-    max-width: 1000px;
+    margin-top: 5px;
     border-radius: 10px;
-    padding:10px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom: 10px;
     text-align: center;
-    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-.Painel2{
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
+.ModuloNaoHideForm{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
     padding:10px;
-    text-align: center;
-    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    border-radius: 10px;
 }
 
+.Img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:30px;
+}
 
 .Botao{
     border: none;
+    width: 180px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -31,4 +50,52 @@
 
 .Tabela{
     width:80%;
+}
+
+.Nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Input{
+    border: none;
+    width: 80%;
+    opacity: 0.6;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size:15px;
+    padding:5px;
+}
+
+.InputErro{
+    border: solid red;
+    width: 75%;
+    opacity: 0.6;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size:15px;
+    padding:5px;
+}
+
+.Mensagem{
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding:10px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.Linha{
+    display: flex;
+    justify-content:space-around;
+}
+
+.ImgLoad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
 }

@@ -34,7 +34,6 @@ model Modulo {
   id        Int        @id @default(autoincrement())
   avaliacao Int
   titulo    String     @db.VarChar(200)
-  resultado Float      @db.Float
   Avaliacao Avaliacao  @relation(fields: [avaliacao], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Modulo_fk0")
   Media     Media[]
   Pergunta  Pergunta[]

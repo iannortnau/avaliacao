@@ -13,7 +13,7 @@ import axios from "axios";
 export default function Avaliacao(props) {
     const [id,setId] = useState(null);
     const [estado,setEstado] = useState(0);
-    const [hide,setHide] = useState(true);
+    const [hide,setHide] = useState(false);
     const [submit,setSubmit] = useState(false);
     const [nome,setNome] = useState("");
     const [criador,setCriador] = useState("");
@@ -21,7 +21,7 @@ export default function Avaliacao(props) {
     const [mensagem,setMensagem] = useState({
         texto:null,
         cor:null,
-    })
+    });
 
     function mudaHide() {
         setHide(!hide);
@@ -70,8 +70,11 @@ export default function Avaliacao(props) {
             try {
                 const resposta = await axios.put(process.env.NEXT_PUBLIC_API_URL+"/avaliacao/"+id,data);
                 if(resposta.status === 200){
-                    console.log(resposta.data);
-                    setMensagem({texto:"Sucesso.",cor:"w3-green"})
+                    setEstado(0);
+                    setMensagem({texto:"Sucesso.",cor:"w3-green"});
+                    setTimeout(function () {
+                        setMensagem({texto:null,cor:null});
+                    },3000)
                 }else{
                     setMensagem({texto:"Erro:3",cor:"w3-red"});
                 }
@@ -101,7 +104,7 @@ export default function Avaliacao(props) {
                 <div className={styles.AvaliacaoNaoHideNav}>
                     <h2>Avaliação: {nome}</h2>
                     <div className={styles.Img}>
-                        <Image src={up} onClick={mudaHide}/>
+                        <Image className={"w3-ripple"} src={up} onClick={mudaHide}/>
                     </div>
                 </div>
                 <form className={"corPrimariaTrTr "+styles.AvaliacaoNaoHideForm}>

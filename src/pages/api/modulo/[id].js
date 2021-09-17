@@ -7,27 +7,20 @@ async function handler(req, res) {
     const id =  parseInt(req.query.id);
     switch (req.method) {
         case 'GET':
-            return getAvaliacao();
+            return getModulo();
         case 'PUT':
-            return attAvaliacao();
+            return attModulo();
         case 'DELETE':
-            return deleteAvaliacao();
+            return deleteModulo();
         default:
             return res.status(405).end(`Method ${req.method} Not Allowed`)
     }
     
-    async function getAvaliacao() {
+    async function getModulo() {
         try {
             const result = await prisma.avaliacao.findUnique({
                 where: {
                     id: id,
-                },
-                include: {
-                    Modulo: {
-                        include:{
-                            Pergunta:true
-                        }
-                    }
                 },
             });
             return res.status(200).json(result);
@@ -37,9 +30,9 @@ async function handler(req, res) {
         }
     }
 
-    async function attAvaliacao(){
+    async function attModulo(){
         try {
-            const result = await prisma.avaliacao.update({
+            const result = await prisma.modulo.update({
                 where: {
                     id: id,
                 },
@@ -52,9 +45,9 @@ async function handler(req, res) {
         }
     }
 
-    async function deleteAvaliacao(){
+    async function deleteModulo(){
         try {
-            const result = await prisma.avaliacao.delete({
+            const result = await prisma.modulo.delete({
                 where: {
                     id: id,
                 },

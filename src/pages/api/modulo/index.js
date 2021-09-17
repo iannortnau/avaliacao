@@ -6,30 +6,22 @@ export default handler;
 function handler(req, res) {
     switch (req.method) {
         case 'GET':
-            return getAvaliacoes();
+            return getModulos();
         case 'POST':
-            return createAvaliacao();
+            return createModulo();
         default:
             return res.status(405).end(`Method ${req.method} Not Allowed`)
     }
 
-    async function getAvaliacoes() {
-        const usuarios = await prisma.avaliacao.findMany({
-            include: {
-                Modulo: {
-                    include:{
-                        Pergunta:true
-                    }
-                }
-            },
-        });
+    async function getModulos() {
+        const usuarios = await prisma.modulo.findMany();
         console.log(usuarios);
         return res.status(200).json(usuarios);
     }
 
-    async function createAvaliacao() {
+    async function createModulo() {
         try {
-            const resp = await prisma.avaliacao.create({
+            const resp = await prisma.modulo.create({
                 data:req.body.data
             });
             return res.status(200).json(resp);
