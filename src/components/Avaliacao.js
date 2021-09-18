@@ -4,14 +4,14 @@ import lixo from "../../public/icones/icons8_delete_trash_24px.png";
 import Link from 'next/link'
 import Image from "next/image";
 import Router from "next/router";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import up from "../../public/icones/icons8_scroll_up_48px.png";
 import down from "../../public/icones/icons8_scroll_down_48px.png";
 import loading from "../../public/icones/icons8_swirl_24px_2.png";
 import axios from "axios";
 
 export default function Avaliacao(props) {
-    const [id,setId] = useState(null);
+    const [id,setId] = useState(props.idAvaliacao||null);
     const [estado,setEstado] = useState(0);
     const [hide,setHide] = useState(false);
     const [submit,setSubmit] = useState(false);
@@ -22,6 +22,20 @@ export default function Avaliacao(props) {
         texto:null,
         cor:null,
     });
+
+    useEffect(function () {
+        pegaDados();
+    },[]);
+
+    async function pegaDados(){
+        if(id !== null){
+            const resposta = await axios.get(process.env.NEXT_PUBLIC_API_URL+"/avaliacao/"+id);
+            const axuAvaliacao = resposta.data;
+            setNome(axuAvaliacao.nome);
+            setCriador(axuAvaliacao.criador);
+            setDescricao(axuAvaliacao.descricao);
+        }
+    }
 
     function mudaHide() {
         setHide(!hide);

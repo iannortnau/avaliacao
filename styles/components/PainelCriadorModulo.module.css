@@ -3,7 +3,7 @@
     justify-content: space-between;
     flex-direction: column;
     align-content: center;
-    margin-top: 5%;
+    margin-top: 50px;
     width: 80%;
     max-width: 1000px;
     border-radius: 10px;
@@ -22,7 +22,7 @@
 .ListaDeModulos{
     width:100%;
     background-color:white;
-    padding:5px;
+    padding:10px;
     border-radius: 10px;
 }
 

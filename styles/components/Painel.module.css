@@ -30,3 +30,12 @@
 .Tabela{
     width:80%;
 }
+
+.Mensagem{
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding:10px;
+    font-weight: bold;
+    color: #fff;
+}

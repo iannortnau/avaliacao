@@ -1,5 +1,5 @@
 .corPrimaria{background-color: #7368e6}
-.corPrimariaText{color: #7368e6}
+.corPrimariaText{color: #7368e6!important;}
 .corPrimariaTr{background-color: rgba(115, 104, 230, 0.36)}
 .corPrimariaTrTr{background-color: rgba(115, 104, 230, 0.21)}
 .corSecundaria{background-color: #665bd2}

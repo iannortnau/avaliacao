@@ -15,7 +15,7 @@ export default function PainelCriadorModulo(props) {
 
     useEffect(function () {
         listaModulos();
-    },[])
+    },[]);
 
     async function listaModulos(){
         setEstado(1);

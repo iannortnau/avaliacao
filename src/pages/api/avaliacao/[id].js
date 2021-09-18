@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client"
+import axios from "axios";
+import Modulo from "../../../components/Modulo";
 
 const prisma = new PrismaClient()
 export default handler;
@@ -54,12 +56,37 @@ async function handler(req, res) {
 
     async function deleteAvaliacao(){
         try {
-            const result = await prisma.avaliacao.delete({
+            const result = await prisma.avaliacao.findUnique({
                 where: {
                     id: id,
                 },
+                include: {
+                    Modulo: {
+                        include:{
+                            Pergunta:true
+                        }
+                    }
+                },
             });
-            return res.status(200).json(result);
+            for (let i = 0; i < result.Modulo.length; i++) {
+                const auxModulo = result.Modulo[i];
+                await prisma.pergunta.deleteMany({
+                    where: {
+                        modulo: auxModulo.id,
+                    }
+                });
+                await prisma.modulo.delete({
+                    where: {
+                        id: auxModulo.id,
+                    }
+                });
+            }
+            const resultado = await prisma.avaliacao.delete({
+                where: {
+                    id: id,
+                }
+            });
+            return res.status(200).json(resultado);
         }catch (e) {
             console.log(e);
             return res.status(400).json(e);
