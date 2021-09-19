@@ -1,0 +1,116 @@
+.Painel{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 1000px;
+    border-radius: 10px;
+    padding:10px;
+    text-align: center;
+}
+
+.Form{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+    border-radius: 10px;
+    width:100%;
+}
+
+.Painel2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    padding:10px;
+    text-align: center;
+}
+
+.Img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:30px;
+}
+
+.Botao{
+    border: none;
+    width: 180px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.Botao2{
+    border: none;
+    width: 300px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.Tabela{
+    width:80%;
+}
+
+.Nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Input{
+    border: none;
+    width: 80%;
+    opacity: 0.6;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size:15px;
+    padding:5px;
+}
+
+.InputErro{
+    border: solid red;
+    width: 80%;
+    opacity: 0.6;
+    border-radius: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size:15px;
+    padding:5px;
+}
+
+.Mensagem{
+    width: 80%;
+    max-width: 1000px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding:10px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.Linha{
+    display: flex;
+    justify-content:space-around;
+}
+
+.ImgLoad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}

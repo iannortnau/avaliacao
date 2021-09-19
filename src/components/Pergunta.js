@@ -43,7 +43,7 @@ export default function Modulo(props) {
                     setMensagem({texto:"Sucesso.",cor:"w3-green"});
                     setTimeout(function () {
                         setMensagem({texto:null,cor:null});
-                    },3000)
+                    },3000);
                 }else{
                     setMensagem({texto:"Erro:1",cor:"w3-red"});
                 }

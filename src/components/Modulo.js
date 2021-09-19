@@ -116,7 +116,7 @@ export default function Modulo(props) {
     if(hide){
         return (
             <div className={"corPrimariaText corPrimariaTr w3-ripple "+styles.ModuloHide} onClick={mudaHide}>
-                <h3>Módulo: {props.infos.titulo}</h3>
+                <h3>Módulo: {tituloEstatico}</h3>
                 <div className={styles.Img}>
                     <Image src={down}/>
                 </div>

@@ -5,6 +5,7 @@ import Avaliacao from "../../components/Avaliacao";
 import {useEffect, useState} from "react";
 import { useRouter } from 'next/router'
 import axios from "axios";
+import Head from "next/head";
 
 export default function Editar() {
     const router = useRouter();
@@ -16,6 +17,10 @@ export default function Editar() {
 
     return (
         <div key={"avaliacao"+id} className="container">
+            <Head>
+                <title>Avaliações</title>
+                <link rel="shortcut icon" href={process.env.NEXT_PUBLIC_URL+"/icons8_360_degrees.ico"} />
+            </Head>
             <Header/>
             <PainelCriador/>
             <Avaliacao

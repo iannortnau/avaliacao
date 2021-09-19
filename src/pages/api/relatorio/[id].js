@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import axios from "axios";
 import Modulo from "../../../components/Modulo";
-import Relatorio from "../../../components/Relatorio";
 
 const prisma = new PrismaClient()
 export default handler;
@@ -10,25 +9,25 @@ async function handler(req, res) {
     const id =  parseInt(req.query.id);
     switch (req.method) {
         case 'GET':
-            return getAvaliacao();
+            return getRelatorio();
         case 'PUT':
-            return attAvaliacao();
+            return attRelatorio();
         case 'DELETE':
-            return deleteAvaliacao();
+            return deleteRelatorio();
         default:
             return res.status(405).end(`Method ${req.method} Not Allowed`)
     }
     
-    async function getAvaliacao() {
+    async function getRelatorio() {
         try {
-            const result = await prisma.avaliacao.findUnique({
+            const result = await prisma.relatorio.findUnique({
                 where: {
                     id: id,
                 },
                 include: {
-                    Modulo: {
+                    Media: {
                         include:{
-                            Pergunta:true
+                            Resposta:true
                         }
                     }
                 },
@@ -40,9 +39,9 @@ async function handler(req, res) {
         }
     }
 
-    async function attAvaliacao(){
+    async function attRelatorio(){
         try {
-            const result = await prisma.avaliacao.update({
+            const result = await prisma.relatorio.update({
                 where: {
                     id: id,
                 },
@@ -55,38 +54,34 @@ async function handler(req, res) {
         }
     }
 
-    async function deleteAvaliacao(){
+    async function deleteRelatorio(){
         try {
-            const result = await prisma.avaliacao.findUnique({
+            const result = await prisma.relatorio.findUnique({
                 where: {
                     id: id,
                 },
                 include: {
-                    Modulo: {
+                    Media: {
                         include:{
-                            Pergunta:true
+                            Resposta:true
                         }
-                    },
-                    Relatorio:true
+                    }
                 },
             });
-            for (let i = 0; i < result.Relatorio.length; i++) {
-                await axios.delete(process.env.NEXT_PUBLIC_API_URL+"/relatorio/"+result.Relatorio[i].id);
-            }
-            for (let i = 0; i < result.Modulo.length; i++) {
-                const auxModulo = result.Modulo[i];
-                await prisma.pergunta.deleteMany({
+            for (let i = 0; i < result.Media.length; i++) {
+                const auxMedia = result.Media[i];
+                await prisma.resposta.deleteMany({
                     where: {
-                        modulo: auxModulo.id,
+                        media: auxMedia.id,
                     }
                 });
-                await prisma.modulo.delete({
+                await prisma.media.delete({
                     where: {
-                        id: auxModulo.id,
+                        id: auxMedia.id,
                     }
                 });
             }
-            const resultado = await prisma.avaliacao.delete({
+            const resultado = await prisma.relatorio.delete({
                 where: {
                     id: id,
                 }

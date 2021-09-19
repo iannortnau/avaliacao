@@ -36,7 +36,7 @@ export default function PainelCriadorModulo(props) {
         setEstado(1);
         const data = {
             data:{
-                avaliacao:props.idAvaliacao,
+                avaliacao:parseInt(props.idAvaliacao),
                 titulo:""
             }
         }

@@ -88,7 +88,7 @@ export default function Avaliacao(props) {
                     setMensagem({texto:"Sucesso.",cor:"w3-green"});
                     setTimeout(function () {
                         setMensagem({texto:null,cor:null});
-                    },3000)
+                    },3000);
                 }else{
                     setMensagem({texto:"Erro:3",cor:"w3-red"});
                 }

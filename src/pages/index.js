@@ -6,6 +6,7 @@ export default function Home() {
     Router.push("admin/painel");
   });
   return (
-      <></>
+      <>
+      </>
   );
 }
