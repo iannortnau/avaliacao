@@ -41,14 +41,14 @@ function handler(req, res) {
                     </Page>
                 </Document>
             );
-            ReactPDF.render(<Pdf />, __dirname+"../../../../../public/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.nome+".pdf");
+            ReactPDF.render(<Pdf />, __dirname+"/../../../../public/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.id+".pdf");
 
             const result = await prisma.relatorio.update({
                 where: {
                     id: rascunho.relatorio,
                 },
                 data:{
-                    usuario_pdf:process.env.NEXT_PUBLIC_URL+"/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.nome+".pdf"
+                    usuario_pdf:process.env.NEXT_PUBLIC_URL+"/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.id+".pdf"
                 },
             });
 
@@ -66,7 +66,7 @@ function handler(req, res) {
                 attachments: [
                     {   // file on disk as an attachment
                         filename: rascunho.usuarioEmail+"_"+avaliacao.nome+".pdf",
-                        path: process.env.NEXT_PUBLIC_URL+"/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.nome+".pdf" // stream this file
+                        path: process.env.NEXT_PUBLIC_URL+"/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.id+".pdf" // stream this file
                     },
                 ]
             };
