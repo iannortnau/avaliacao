@@ -21,7 +21,6 @@ export default function Grafico(props) {
     const [tamanho,setTamanho] = useState(0);
     const [data,setData] = useState({
         labels: [],
-        range:[1,10],
         datasets: [
             {
                 label: avaliacao.nome,
@@ -41,7 +40,7 @@ export default function Grafico(props) {
                 pointBorderColor: 'rgba(255,255,255,0)',
                 pointHoverBackgroundColor: 'rgba(255,255,255,0)',
                 pointHoverBorderColor: 'rgba(179,181,198,0)',
-                data: [10]
+                data: [10,0]
             },
         ]
     });
@@ -135,6 +134,13 @@ export default function Grafico(props) {
                     width={500}
                     height={500}
                     ref={chartRef}
+                    options={{
+                        plugins: {
+                            legend: {
+                                labels: false
+                            }
+                        }}
+                    }
                 />
             </div>
             <div className={"corPrimariaTr "+styles.Painel}>

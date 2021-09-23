@@ -20,6 +20,25 @@ function handler(req, res) {
             const rascunho = req.body.rascunho;
             const data = req.body.graficoData;
 
+            const modulos = [];
+            for (let i = 0; i < rascunho.modulosGuia.length; i++) {
+                const auxModulo = {
+                    titulo: avaliacao.Modulo[i].titulo,
+                    media: rascunho.modulos[rascunho.modulosGuia[i]].media,
+                    perguntas:[]
+                }
+                for (let j = 0; j < rascunho.modulos[rascunho.modulosGuia[i]].perguntasGuia.length; j++) {
+                    const auxPergunta = {
+                        titulo: avaliacao.Modulo[i].Pergunta[j].titulo,
+                        descricao: avaliacao.Modulo[i].Pergunta[j].descricao,
+                        resposta: rascunho.modulos[rascunho.modulosGuia[i]].perguntas[rascunho.modulos[rascunho.modulosGuia[i]].perguntasGuia[j]],
+                    }
+                    auxModulo.perguntas.push(auxPergunta);
+                }
+                modulos.push(auxModulo);
+            }
+
+            console.log(modulos);
             const Pdf = () => (
                 <Document>
                     <Page size="A4" style={styles.page}>
@@ -28,9 +47,9 @@ function handler(req, res) {
                             <Text style={styles.h2}>{avaliacao.descricao}</Text>
                             <Text style={styles.h3}>{avaliacao.criador}</Text>
                             <View style={styles.painel2}>
-                                <Text style={styles.h5}><b>Nome:</b> {rascunho.usuarioNome}</Text>
-                                <Text style={styles.h5}><b>Email:</b> {rascunho.usuarioEmail}</Text>
-                                <Text style={styles.h5}><b>Data:</b> {moment(rascunho.data).format("DD/MM/YYYY")}</Text>
+                                <Text style={styles.h5}>Nome: {rascunho.usuarioNome}</Text>
+                                <Text style={styles.h5}>Email: {rascunho.usuarioEmail}</Text>
+                                <Text style={styles.h5}>Data: {moment(rascunho.data).format("DD/MM/YYYY")}</Text>
 
                             </View>
                         </View>
@@ -39,16 +58,35 @@ function handler(req, res) {
                             src={data}
                         />
                     </Page>
+                    <Page size="A4" style={styles.page} wrap={false}>
+                        {modulos.map(function (modulo, index) {
+                            return(
+                                <View key={"m"+index} style={styles.painel1} wrap={false}>
+                                    <Text style={styles.h1}>{modulo.titulo}:</Text>
+                                    <Text style={styles.h2}>Média: {modulo.media}</Text>
+                                    {modulo.perguntas.map(function (pergunta,index) {
+                                        return(
+                                            <View key={"p:"+index} style={styles.painelP}>
+                                                <Text style={styles.tp}>{pergunta.titulo}:</Text>
+                                                <Text style={styles.tp}>{pergunta.descricao}</Text>
+                                                <Text style={styles.tp}>Resposta:{pergunta.resposta}</Text>
+                                            </View>
+                                        );
+                                    })}
+                                </View>
+                            );
+                        })}
+                    </Page>
                 </Document>
             );
-            ReactPDF.render(<Pdf />, __dirname+"/../../../../public/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.id+".pdf");
 
+            ReactPDF.render(<Pdf />, __dirname+"/../../../../public/pdf/'"+rascunho.usuarioEmail+"_"+avaliacao.id+"'.pdf");
             const result = await prisma.relatorio.update({
                 where: {
                     id: rascunho.relatorio,
                 },
                 data:{
-                    usuario_pdf:process.env.NEXT_PUBLIC_URL+"/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.id+".pdf"
+                    usuario_pdf:process.env.NEXT_PUBLIC_URL+"/pdf/'"+rascunho.usuarioEmail+"_"+avaliacao.id+"'.pdf"
                 },
             });
 
@@ -66,18 +104,18 @@ function handler(req, res) {
                 attachments: [
                     {   // file on disk as an attachment
                         filename: rascunho.usuarioEmail+"_"+avaliacao.nome+".pdf",
-                        path: process.env.NEXT_PUBLIC_URL+"/pdf/"+rascunho.usuarioEmail+"_"+avaliacao.id+".pdf" // stream this file
+                        path: __dirname+"/../../../../public/pdf/'"+rascunho.usuarioEmail+"_"+avaliacao.id+"'.pdf" // stream this file
                     },
                 ]
             };
-            transporter.sendMail(mailOptions, function(error, info){
+            await transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                     console.log(error);
                     return res.status(400).json(error);
                 } else {
                     return res.status(200).json("ok");
                 }
-            });
+            })
         }catch (e) {
             console.log(e);
             return res.status(400).json(e);
@@ -118,15 +156,29 @@ const styles = StyleSheet.create({
         backgroundColor: corPrimariaTrTr,
         borderRadius:"0.25cm",
     },
+    painelP:{
+        color:corPrimaria,
+        width: "100%",
+        padding:"0.25cm",
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent:'center',
+        textAlign:'center',
+        flexWrap: 'wrap',
+        margin: "0.1cm",
+        backgroundColor: corPrimariaTrTr,
+        borderRadius:"0.25cm",
+    },
+    tp:{
+        fontSize:11,
+        margin: "0.1cm",
+    },
     h1:{margin: "0.2cm",},
     h2:{margin: "0.2cm",},
     h3:{margin: "0.2cm",},
-    h5:{
-        margin: "0.5cm",
-    },
+    h5:{margin: "0.5cm",},
     img:{
         width: "15cm",
         height: "15cm",
-
     },
 });
