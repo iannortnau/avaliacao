@@ -3,6 +3,7 @@ import ReactPDF, { Page, Text, View, Document, StyleSheet, Image} from '@react-p
 import moment from "moment";
 const prisma = new PrismaClient();
 import nodemailer from "nodemailer";
+import md5 from "md5";
 
 export default handler;
 
@@ -19,6 +20,7 @@ function handler(req, res) {
             const avaliacao = req.body.avaliacao;
             const rascunho = req.body.rascunho;
             const data = req.body.graficoData;
+            const code = md5(rascunho.usuarioEmail+"_"+avaliacao.id);
 
             const modulos = [];
             for (let i = 0; i < rascunho.modulosGuia.length; i++) {
@@ -80,13 +82,13 @@ function handler(req, res) {
                 </Document>
             );
 
-            ReactPDF.render(<Pdf />, __dirname+"/../../../../public/pdf/'"+rascunho.usuarioEmail+"_"+avaliacao.id+"'.pdf");
+            ReactPDF.render(<Pdf />, __dirname+"/../../../../public/pdf/"+code+".pdf");
             const result = await prisma.relatorio.update({
                 where: {
                     id: rascunho.relatorio,
                 },
                 data:{
-                    usuario_pdf:process.env.NEXT_PUBLIC_URL+"/pdf/'"+rascunho.usuarioEmail+"_"+avaliacao.id+"'.pdf"
+                    usuario_pdf:process.env.NEXT_PUBLIC_URL+"/pdf/"+code+".pdf"
                 },
             });
 
@@ -104,7 +106,7 @@ function handler(req, res) {
                 attachments: [
                     {   // file on disk as an attachment
                         filename: rascunho.usuarioEmail+"_"+avaliacao.nome+".pdf",
-                        path: __dirname+"/../../../../public/pdf/'"+rascunho.usuarioEmail+"_"+avaliacao.id+"'.pdf" // stream this file
+                        path: __dirname+"/../../../../public/pdf/"+code+".pdf" // stream this file
                     },
                 ]
             };
