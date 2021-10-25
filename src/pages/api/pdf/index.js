@@ -65,7 +65,7 @@ function handler(req, res) {
                             return(
                                 <View key={"m"+index} style={styles.painel1} wrap={false}>
                                     <Text style={styles.h1}>{modulo.titulo}:</Text>
-                                    <Text style={styles.h2}>Média: {modulo.media}</Text>
+                                    <Text style={styles.h2}>Média: {modulo.media.toFixed(2)}</Text>
                                     {modulo.perguntas.map(function (pergunta,index) {
                                         return(
                                             <View key={"p:"+index} style={styles.painelP}>
@@ -125,7 +125,7 @@ function handler(req, res) {
     }
 }
 
-const corPrimaria = "#7368e6";
+const corPrimaria = "#4f41ff";
 const corPrimariaTr = "rgba(115, 104, 230, 0.36)";
 const corPrimariaTrTr = "rgba(115, 104, 230, 0.2)";
 
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         margin: "0.1cm",
     },
     h1:{margin: "0.2cm",},
-    h2:{margin: "0.2cm",},
+    h2:{margin: "0.2cm",fontSize:10},
     h3:{margin: "0.2cm",},
     h5:{margin: "0.5cm",},
     img:{

@@ -78,7 +78,7 @@ export default function Avaliacao(props) {
                     nome:nome,
                     descricao:descricao,
                     criador:criador,
-                    link:process.env.NEXT_PUBLIC_URL+"/avaliacao/"+id,
+                    link:process.env.NEXT_PUBLIC_DOMAIN+"/avaliacao/"+id,
                 }
             }
             try {

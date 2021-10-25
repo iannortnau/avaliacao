@@ -22,8 +22,8 @@ model Media {
   modulo    Int
   relatorio Int
   valor     Float      @db.Float
-  Modulo    Modulo     @relation(fields: [modulo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Media_fk0")
-  Relatorio Relatorio  @relation(fields: [relatorio], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Media_fk1")
+  Modulo    Modulo     @relation(fields: [modulo], references: [id], onUpdate: Restrict, map: "Media_fk0")
+  Relatorio Relatorio  @relation(fields: [relatorio], references: [id], onUpdate: Restrict, map: "Media_fk1")
   Resposta  Resposta[]
 
   @@index([modulo], map: "Media_fk0")
@@ -34,7 +34,7 @@ model Modulo {
   id        Int        @id @default(autoincrement())
   avaliacao Int
   titulo    String     @db.VarChar(200)
-  Avaliacao Avaliacao  @relation(fields: [avaliacao], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Modulo_fk0")
+  Avaliacao Avaliacao  @relation(fields: [avaliacao], references: [id], onUpdate: Restrict, map: "Modulo_fk0")
   Media     Media[]
   Pergunta  Pergunta[]
 
@@ -46,7 +46,7 @@ model Pergunta {
   modulo    Int
   titulo    String     @db.VarChar(200)
   descricao String     @db.VarChar(500)
-  Modulo    Modulo     @relation(fields: [modulo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Pergunta_fk0")
+  Modulo    Modulo     @relation(fields: [modulo], references: [id], onUpdate: Restrict, map: "Pergunta_fk0")
   Resposta  Resposta[]
 
   @@index([modulo], map: "Pergunta_fk0")
@@ -59,7 +59,7 @@ model Relatorio {
   usuario_email String    @db.VarChar(500)
   usuario_pdf   String    @db.VarChar(500)
   data          DateTime  @db.Date
-  Avaliacao     Avaliacao @relation(fields: [avaliacao], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Relatorio_fk0")
+  Avaliacao     Avaliacao @relation(fields: [avaliacao], references: [id], onUpdate: Restrict, map: "Relatorio_fk0")
   Media         Media[]
 
   @@index([avaliacao], map: "Relatorio_fk0")
@@ -70,8 +70,8 @@ model Resposta {
   pergunta Int
   media    Int
   valor    Int
-  Media    Media    @relation(fields: [media], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Resposta_fk1")
-  Pergunta Pergunta @relation(fields: [pergunta], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Resposta_fk0")
+  Media    Media    @relation(fields: [media], references: [id], onUpdate: Restrict, map: "Resposta_fk1")
+  Pergunta Pergunta @relation(fields: [pergunta], references: [id], onUpdate: Restrict, map: "Resposta_fk0")
 
   @@index([pergunta], map: "Resposta_fk0")
   @@index([media], map: "Resposta_fk1")
