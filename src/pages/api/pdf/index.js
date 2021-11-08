@@ -71,7 +71,9 @@ function handler(req, res) {
                                             <View key={"p:"+index} style={styles.painelP}>
                                                 <Text style={styles.tp}>{pergunta.titulo}:</Text>
                                                 <Text style={styles.tp}>{pergunta.descricao}</Text>
-                                                <Text style={styles.tp}>Resposta:{pergunta.resposta}</Text>
+                                                <View key={"p:"+index} style={styles.painelP}>
+                                                    <Text style={styles.tp}>Resposta:{pergunta.resposta}</Text>
+                                                </View>
                                             </View>
                                         );
                                     })}
@@ -141,6 +143,7 @@ const styles = StyleSheet.create({
         padding:"0.25cm",
         flexDirection: 'column',
         justifyContent: 'center',
+        textAlign: 'center',
         alignItems: 'center',
         margin: "0.5cm",
         backgroundColor: corPrimariaTr,
